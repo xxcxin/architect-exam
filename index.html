@@ -1,14 +1,471 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>建築師法規刷題</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>建築師考試</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+  background: #f5f5f3;
+  color: #202020;
+  padding-bottom: 90px;
+}
+
+header {
+  background: white;
+  padding: 52px 22px 24px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+header p {
+  margin: 7px 0 0;
+  color: #777;
+  font-size: 14px;
+}
+
+main {
+  padding: 18px;
+}
+
+.hero {
+  background: #202020;
+  color: white;
+  border-radius: 22px;
+  padding: 24px;
+  margin-bottom: 22px;
+}
+
+.hero-small {
+  font-size: 14px;
+  opacity: .7;
+}
+
+.hero h2 {
+  margin: 8px 0 5px;
+  font-size: 27px;
+}
+
+.primary {
+  width: 100%;
+  border: 0;
+  background: white;
+  color: #111;
+  padding: 15px;
+  border-radius: 14px;
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 20px 3px 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 19px;
+  min-height: 125px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.03);
+}
+
+.card .icon {
+  font-size: 25px;
+}
+
+.card h3 {
+  margin: 12px 0 4px;
+  font-size: 17px;
+}
+
+.card p {
+  margin: 0;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.list {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.row {
+  padding: 17px 18px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.row span:last-child {
+  color: #999;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.bottom-nav {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+  background: rgba(255,255,255,.95);
+  border-top: 1px solid #ddd;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  z-index: 20;
+}
+
+.nav-button {
+  border: 0;
+  background: none;
+  padding: 10px 0 8px;
+  font-size: 11px;
+  color: #888;
+}
+
+.nav-button .nav-icon {
+  display: block;
+  font-size: 21px;
+  margin-bottom: 3px;
+}
+
+.nav-button.active {
+  color: #111;
+  font-weight: 700;
+}
+
+.placeholder {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  color: #666;
+  line-height: 1.8;
+}
+</style>
 </head>
 
 <body>
-  <h1>建築師法規刷題</h1>
-  <p>網站成功啟動 🎉</p>
-  <button>開始刷題</button>
+
+<header>
+  <h1>建築師考試</h1>
+  <p>營建法規與實務</p>
+</header>
+
+<main>
+
+<section id="home" class="page active">
+
+  <div class="hero">
+    <div class="hero-small">今日學習</div>
+    <h2>開始刷題</h2>
+    <div class="hero-small">目前尚未建立答題紀錄</div>
+    <button class="primary" onclick="showPage('practice')">
+      開始今日練習
+    </button>
+  </div>
+
+  <div class="section-title">學習模式</div>
+
+  <div class="grid">
+
+    <div class="card" onclick="showPage('laws')">
+      <div class="icon">📖</div>
+      <h3>法規整理</h3>
+      <p>法條、重點、土解與圖解</p>
+    </div>
+
+    <div class="card" onclick="showPage('practice')">
+      <div class="icon">✏️</div>
+      <h3>單元刷題</h3>
+      <p>依章節分類歷屆考題</p>
+    </div>
+
+    <div class="card" onclick="showPage('years')">
+      <div class="icon">📝</div>
+      <h3>歷屆考古</h3>
+      <p>按照年份完整作答</p>
+    </div>
+
+    <div class="card" onclick="showPage('mistakes')">
+      <div class="icon">❌</div>
+      <h3>錯題複習</h3>
+      <p>集中練習曾經答錯的題目</p>
+    </div>
+
+  </div>
+
+  <div class="section-title">目前進度</div>
+
+  <div class="list">
+    <div class="row">
+      <span>完成題數</span>
+      <span>0 題</span>
+    </div>
+    <div class="row">
+      <span>正確率</span>
+      <span>--</span>
+    </div>
+    <div class="row">
+      <span>錯題</span>
+      <span>0 題</span>
+    </div>
+  </div>
+
+</section>
+
+
+<section id="laws" class="page">
+
+  <div class="section-title">法規整理</div>
+
+  <div class="list">
+    <div class="row">
+      <span>建築法</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>建築技術規則</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>都市計畫法規</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>土地相關法規</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>公寓大廈管理</span>
+      <span>›</span>
+    </div>
+
+    <div class="row">
+      <span>其他相關法規</span>
+      <span>›</span>
+    </div>
+  </div>
+
+</section>
+
+
+<section id="practice" class="page">
+
+  <div class="section-title">單元刷題</div>
+
+  <div class="list">
+
+    <div class="row">
+      <span>基地與道路</span>
+      <span>0 題 ›</span>
+    </div>
+
+    <div class="row">
+      <span>建蔽率與容積率</span>
+      <span>0 題 ›</span>
+    </div>
+
+    <div class="row">
+      <span>樓梯與走廊</span>
+      <span>0 題 ›</span>
+    </div>
+
+    <div class="row">
+      <span>防火與避難</span>
+      <span>0 題 ›</span>
+    </div>
+
+    <div class="row">
+      <span>無障礙設施</span>
+      <span>0 題 ›</span>
+    </div>
+
+    <div class="row">
+      <span>停車空間</span>
+      <span>0 題 ›</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="years" class="page">
+
+  <div class="section-title">歷屆試題</div>
+
+  <div class="list">
+
+    <div class="row">
+      <span>115 年</span>
+      <span>尚未作答 ›</span>
+    </div>
+
+    <div class="row">
+      <span>114 年</span>
+      <span>尚未作答 ›</span>
+    </div>
+
+    <div class="row">
+      <span>113 年</span>
+      <span>尚未作答 ›</span>
+    </div>
+
+    <div class="row">
+      <span>112 年</span>
+      <span>尚未作答 ›</span>
+    </div>
+
+    <div class="row">
+      <span>111 年</span>
+      <span>尚未作答 ›</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="mistakes" class="page">
+
+  <div class="section-title">錯題本</div>
+
+  <div class="placeholder">
+    目前沒有錯題。<br>
+    開始刷題後，答錯的題目會自動加入這裡。
+  </div>
+
+</section>
+
+
+<section id="profile" class="page">
+
+  <div class="section-title">我的學習</div>
+
+  <div class="list">
+    <div class="row">
+      <span>累積答題</span>
+      <span>0</span>
+    </div>
+
+    <div class="row">
+      <span>正確率</span>
+      <span>--</span>
+    </div>
+
+    <div class="row">
+      <span>收藏題目</span>
+      <span>0</span>
+    </div>
+
+    <div class="row">
+      <span>錯題</span>
+      <span>0</span>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+<button class="nav-button active"
+onclick="showPage('home',this)">
+<span class="nav-icon">⌂</span>
+首頁
+</button>
+
+<button class="nav-button"
+onclick="showPage('laws',this)">
+<span class="nav-icon">▤</span>
+法規
+</button>
+
+<button class="nav-button"
+onclick="showPage('practice',this)">
+<span class="nav-icon">✎</span>
+單元
+</button>
+
+<button class="nav-button"
+onclick="showPage('years',this)">
+<span class="nav-icon">☷</span>
+歷屆
+</button>
+
+<button class="nav-button"
+onclick="showPage('profile',this)">
+<span class="nav-icon">◎</span>
+我的
+</button>
+
+</nav>
+
+
+<script>
+
+function showPage(id,button){
+
+  document.querySelectorAll('.page')
+  .forEach(page=>{
+    page.classList.remove('active');
+  });
+
+  document.getElementById(id)
+  .classList.add('active');
+
+  document.querySelectorAll('.nav-button')
+  .forEach(btn=>{
+    btn.classList.remove('active');
+  });
+
+  if(button){
+    button.classList.add('active');
+  }
+
+  window.scrollTo(0,0);
+
+}
+
+</script>
+
 </body>
 </html>
