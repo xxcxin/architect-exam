@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "subjects": [
+    {
+      "id": "regulations",
+      "name": "營建法規與實務",
+      "contentFile": "data/regulations.json",
+      "questionFile": "data/questions/regulations.json"
+    },
+    {
+      "id": "structure",
+      "name": "建築結構",
+      "contentFile": "data/structure.json",
+      "questionFile": "data/questions/structure.json"
+    },
+    {
+      "id": "construction",
+      "name": "建築構造與施工",
+      "contentFile": "data/construction.json",
+      "questionFile": "data/questions/construction.json"
+    },
+    {
+      "id": "environment",
+      "name": "建築環境控制",
+      "contentFile": "data/environment.json",
+      "questionFile": "data/questions/environment.json"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "questions": [],
+  "_template": {
+    "id": "114-R-001",
+    "year": 114,
+    "number": 1,
+    "subject": "營建法規與實務",
+    "sectionId": "building-code",
+    "unitId": "stairs",
+    "tags": [
+      "樓梯",
+      "避難"
+    ],
+    "question": "題目文字",
+    "options": [
+      "選項A",
+      "選項B",
+      "選項C",
+      "選項D"
+    ],
+    "answer": 0,
+    "explanation": "答案解析",
+    "source": "考選部",
+    "lawRefs": [],
+    "image": ""
+  }
+}
